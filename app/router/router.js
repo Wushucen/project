@@ -7,27 +7,21 @@ const router = new VueRouter({
     routes: [
         {
             path: '/home',
-            component: ()=>import('../views/Home.vue'),
-            children:[
-                {
-                    path: 'home',
-                    name :'home',
-                    meta: {'name': 'home'},
-                    component: ()=>import('../views/Home.vue')
-                }
-            ]
+            name:'home',
+            component: ()=>import('../layouts/Home.vue'),
         },
         {
-        path: '/index',
-        component: ()=>import('../layouts/Index.vue'),
-        children:[
-                {
-                    path: 'index',
-                    name :'index',
-                    meta: {'name': 'index'},
-                    component: ()=>import('../views/index/index.vue')
-                }
-            ]
+            path: '/index',
+            name:'index',
+            component: ()=>import('../views/index/Index.vue'),
+            // children:[
+            //         {
+            //             path: 'index',
+            //             name :'index',
+            //             meta: {'name': 'index'},
+            //             component: ()=>import('../views/index/index.vue')
+            //         }
+            //     ]
         },
         {
             path: '*',

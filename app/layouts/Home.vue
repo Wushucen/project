@@ -26,7 +26,6 @@
         class="el-menu-vertical-demo"
         :collapse="isCollapse"
         background-color="#4F52BA"
-        text-color="#fff"
         active-text-color="#42b983"
         >
           <el-submenu index="1">
@@ -34,11 +33,9 @@
               <i class="el-icon-s-home"></i>
               <span slot="title">系统首页</span>
             </template>
-            <el-menu-item-group>
-              <div class="system">
-                <el-menu-item index="2-1">系统首页</el-menu-item>
-              </div>
-            </el-menu-item-group>
+            <el-menu-item index="2-1">
+              <router-link to="/system">系统状态</router-link>
+            </el-menu-item>
           </el-submenu>
           <el-submenu index="2">
             <template slot="title">
@@ -88,12 +85,15 @@
               <router-link to="/user">用户信息</router-link>
             </el-menu-item>
           </el-submenu>
-          <el-menu-item>
+          <el-menu-item class="ShowisCollapse">
             <i v-show="isCollapse == false" @click="qiehuan" class="el-icon-s-fold"></i>
             <i v-show="isCollapse" @click="qiehuan" class="el-icon-s-unfold"></i>
           </el-menu-item>
         </el-menu>
       </div>
+    </div>
+    <div class="zhupanel">
+      <router-view />
     </div>
   </div>
 </template>
@@ -118,7 +118,7 @@ export default {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  background: rgba(255, 0, 0, 0.5);// !important
+  // background: rgba(255, 0, 0, 0.5);// !important
   .nav {
     width: 100%;
     height: 6.5%;
@@ -180,21 +180,44 @@ export default {
   .abstract {
     width: 100%;
     height:100%;
-    display: flex;
+
     .menu {
-      height: 100%;
+      width: 63px;
+      // 自适应浏览器的高度
+      height:100%;
+      position:fixed;
       background: #4f52ba;
+      i{
+        color: #fff;
+      }
+      span{
+        color:#fff;
+      }
+      .el-submenu {
+        .el-menu-item {
+          height: 50px;
+          line-height: 50px;
+          padding: 1px 45px;
+          min-width: 199px;
+          .ShowisCollapse{
+            display: block;
+            width: 100%;
+            height: 100%;
+          }
+        }
+      }
     }
   }
-}
-.el-menu-vertical-demo:not(.el-menu--collapse) {
-  width: 200px;
-  min-height: 100%;
-}
-.el-menu-item-group__title {
-  padding: 0px 0px 0px 0px !important;
-  line-height: normal;
-  font-size: 12px;
-  color: #909399;
+  .zhupanel {
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+  .el-menu-vertical-demo:not(.el-menu--collapse) {
+    width: 200px;
+    min-height: 100%;
+    height: 100%;
+  }
 }
 </style>

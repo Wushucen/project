@@ -4,7 +4,10 @@
       <el-tree
         :data="data"
         :props="defaultProps"
-        @node-collapse="handleNodecollapse"
+        node-key="id"
+        ref="tree"
+        highlight-current
+        current-node-key
         @node-expand="handleNodeexpand"
       >
         <span slot-scope="{ node, data, ele }">
@@ -88,21 +91,14 @@ export default {
     
   },
   methods: {
-    
     handleNodeexpand(node, data, ele) {
-      console.log(node);
-      console.log(data);
-      console.log(ele);
+      console.log(data.childNodes);
       if (data.expanded == true) {
-        this.isShowicon = "el-icon-folder-opened";
-      }
-    },
-    handleNodecollapse(node, data, ele) {
-      console.log(node);
-      console.log(data);
-      console.log(ele)
-      if (data.expanded == false) {
-        this.isShowicon = "el-icon-folder";
+        if(data.childNodes.length==1){
+          this.isShowicon = "el-icon-folder-opened";
+        }else{
+          this.isShowicon = "el-icon-folder";
+        }
       }
     }
   }
