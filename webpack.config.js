@@ -39,14 +39,17 @@ module.exports = {
         ]
     },
     plugins: [
-        // 请确保引入这个插件！
+        // 确保引入这个插件
         new VueLoaderPlugin()
     ],
     devServer: {
         proxy: {
             "/api": {
               target: "https://192.168.88.19",
-              pathRewrite: {"^/api" : ""}
+              changeOrigin: true, //是否允许跨域
+              pathRewrite:{
+                  '^/api': ''
+                }
             }
         }
     }

@@ -11,22 +11,34 @@ const router = new VueRouter({
             component: ()=>import('../layouts/Home.vue'),
         },
         {
-            path: '/index',
-            name:'index',
-            component: ()=>import('../views/index/Index.vue'),
-            // children:[
-            //         {
-            //             path: 'index',
-            //             name :'index',
-            //             meta: {'name': 'index'},
-            //             component: ()=>import('../views/index/index.vue')
-            //         }
-            //     ]
+            path: '/tree',
+            name:'tree',
+            component: ()=>import('../views/index/tree.vue'),
+        },
+        {
+            path: '/table',
+            name:'table',
+            component: ()=>import('../views/index/table.vue'),
+        },
+        {
+            path: '/login',
+            name:'login',
+            component: ()=>import('../views/index/login.vue'),
+        },
+        {
+            path: '/select',
+            name:'select',
+            component: ()=>import('../views/index/select.vue'),
+        },
+        {
+            path: '/user',
+            name:'user',
+            component: ()=>import('../views/index/user.vue'),
         },
         {
             path: '*',
             redirect: {
-                name: 'home'
+                name: 'user'
             }
         }
     ]

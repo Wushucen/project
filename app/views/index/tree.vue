@@ -4,14 +4,9 @@
       <el-tree
         :data="data"
         :props="defaultProps"
-        node-key="id"
-        ref="tree"
-        highlight-current
-        current-node-key
-        @node-expand="handleNodeexpand"
       >
-        <span slot-scope="{ node, data, ele }">
-          <i :class="isShowicon"></i>
+        <span slot-scope="{node, data}">
+          <i :class="{'el-icon-folder-opened':node.expanded,'el-icon-folder':!node.expanded}"></i>
           {{data.label}}
         </span>
       </el-tree>
@@ -23,7 +18,7 @@
 export default {
   data() {
     return {
-      isShowicon: "el-icon-folder",
+      nodeExpandArr:[],
       data: [
         {
           label: "一级 1",
@@ -91,16 +86,6 @@ export default {
     
   },
   methods: {
-    handleNodeexpand(node, data, ele) {
-      console.log(data.childNodes);
-      if (data.expanded == true) {
-        if(data.childNodes.length==1){
-          this.isShowicon = "el-icon-folder-opened";
-        }else{
-          this.isShowicon = "el-icon-folder";
-        }
-      }
-    }
   }
 };
 </script>
