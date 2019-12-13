@@ -4,10 +4,13 @@ import VueRouter from 'vue-router';
 Vue.use(VueRouter);
 
 const router = new VueRouter({
+    mode: 'history',
+    base:   process.env.BASE_URL,
     routes: [
         {
             path: '/home',
             name:'home',
+
             component: ()=>import('../layouts/Home.vue'),
         },
         {
@@ -21,8 +24,9 @@ const router = new VueRouter({
             component: ()=>import('../views/index/table.vue'),
         },
         {
-            path: '/login',
+            path: '/',
             name:'login',
+            redirect:"/login",
             component: ()=>import('../views/index/login.vue'),
         },
         {
@@ -38,9 +42,16 @@ const router = new VueRouter({
         {
             path: '*',
             redirect: {
-                name: 'user'
+                name: 'login'
             }
-        }
+        },
+        {
+            path: '/404',
+            component: () => import('@/views/404'),
+            hidden: true
+          },
+           // 404 page must be placed at the end !!!
+        { path: '*', redirect: '/404', hidden: true }
     ]
 });
 
